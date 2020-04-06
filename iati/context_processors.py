@@ -10,6 +10,7 @@ from navigation.models import (
 )
 from iati_standard.models import IATIStandardPage
 from search.models import SearchPage
+from guidance_and_support.models import SupportPage
 
 
 def get_current_page(request):
@@ -34,6 +35,7 @@ def globals(request):
     current_page = get_current_page(request)
     standard_page = IATIStandardPage.objects.live().first()
     search_page = SearchPage.objects.all().live().first()
+    support_page = SupportPage.objects.all().live().first()
 
     return {
         'global': {
@@ -43,6 +45,7 @@ def globals(request):
             'twitter_handle': settings.TWITTER_HANDLE,
             'standard_page': standard_page
             'search_page': search_page,
+            'support_page': support_page,
         },
     }
 
