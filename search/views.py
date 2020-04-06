@@ -13,7 +13,7 @@ from guidance_and_support.models import GuidanceAndSupportPage, GuidanceGroupPag
 # from guidance_and_support.models import KnowledgebasePage
 from news.models import NewsPage
 from home.models import StandardPage
-from iati_standard.models import IATIStandardPage
+from iati_standard.models import IATIStandardPage, ActivityStandardPage
 
 
 def search(request):
@@ -23,7 +23,7 @@ def search(request):
         AboutPage, AboutSubPage, CaseStudyPage, HistoryPage,
         PeoplePage, ContactPage, EventPage, GuidanceAndSupportPage,
         GuidanceGroupPage, GuidancePage, NewsPage,
-        StandardPage, IATIStandardPage,
+        StandardPage, IATIStandardPage, ActivityStandardPage,
     ]
     # TODO: add KnowledgebasePage back if activated
     search_query = request.GET.get('query', None)

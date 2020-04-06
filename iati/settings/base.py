@@ -290,3 +290,7 @@ CELERY_RESULT_BACKEND = 'django-db'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+
+# Github settings
+
+GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
