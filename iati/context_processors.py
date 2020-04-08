@@ -44,8 +44,8 @@ def globals(request):
             'useful_links': UsefulLinks.for_site(request.site).useful_links.all(),
             'twitter_handle': settings.TWITTER_HANDLE,
             'standard_page': standard_page,
-            'search_page': search_page.url if search_page else '',
-            'support_page': support_page.url if support_page else '',
+            'search_page_url': search_page.url if search_page else '',
+            'support_page_url': support_page.url if support_page else '',
         },
     }
 
