@@ -33,25 +33,26 @@ $ui-delta 					: 12px;
 .ui-clearfix				{ &:after { content: ""; display: table; clear: both; *zoom: 1; } }
 
 
+
 // Basics
 // ------------------------------------------------------------
 
 html {
 	border: 0!important;
 	&:after,
-	&:before { 
-		display: none!important; 
+	&:before {
+		display: none!important;
 	}
 }
 
-body { 
-	background: $ui-mist!important; 
+body {
+	background: $ui-mist!important;
 	padding-left: 0!important; ;
 	padding-right: 0!important; ;
 }
 
-.ui-wrapper { 
-	clear: both; 
+.ui-wrapper {
+	clear: both;
 	overflow-x: hidden;
 }
 
@@ -122,7 +123,7 @@ body {
 	color: #fff;
 	a {
 		color: #fff;
-		text-decoration: none;	
+		text-decoration: none;
 		font-size: $ui-gamma!important;
 		@include link-active-styles {
 			color: $ui-petronas;
@@ -144,11 +145,11 @@ body {
 }
 
 .ui-navigation__item {
-	font-size: $ui-gamma!important; 
-	font-family: $ui-font-family!important; 
+	font-size: $ui-gamma!important;
+	font-family: $ui-font-family!important;
 	a {
 		color: #fff;
-		font-size: $ui-gamma!important; 
+		font-size: $ui-gamma!important;
 		@include link-active-styles {
 			color: $ui-petronas;
 		}
@@ -199,8 +200,8 @@ body {
 		display: block;
 		.ui-row {
 			padding-top: 8px;
-			padding-bottom: 11px;		
-		} 
+			padding-bottom: 11px;
+		}
 	}
 }
 
@@ -239,21 +240,21 @@ body {
 .ui-hero__heading {
 	color: #fff;
 	font-size: $ui-alpha!important;
-	font-family: $ui-font-family!important; 
+	font-family: $ui-font-family!important;
 	margin-bottom: 8px;
 }
 
 .ui-hero__caption {
 	color: #fff;
 	max-width: 980px;
-	font-family: $ui-font-family!important; 
+	font-family: $ui-font-family!important;
 	p {
 		color: #fff;
 		font-size: $ui-gamma!important;
 		line-height: 1.6;
 	}
 	a {
-		text-decoration: underline!important; 
+		text-decoration: underline!important;
 		color: #fff;
 		font-size: $ui-gamma!important;
 		@include link-active-styles {
@@ -500,12 +501,12 @@ body {
 // ------------------------------------------------------------
 
 .ui-section__list-waypoints {
-	
+
 }
 
 .ui-section__list-waypoint {
-	font-family: $ui-font-family!important; 
-	font-size: $ui-gamma!important; 
+	font-family: $ui-font-family!important;
+	font-size: $ui-gamma!important;
 	display: block;
 	.ui-section__list-waypoints--alt & {
 		display: block;
@@ -687,10 +688,10 @@ body {
 			border-top: 1px solid #aaa;
 		}
 		&--review {
-			background-color: lighten($ui-flamingo, 35%); 
+			background-color: lighten($ui-flamingo, 35%);
 		}
 		&--approved {
-			background-color: lighten($ui-petronas, 18%); 
+			background-color: lighten($ui-petronas, 18%);
 		}
 	}
 	&__cell {
@@ -744,39 +745,39 @@ body {
 	color: $ui-petrol;
 }
 
-.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute { 
-	color: $ui-felt; 
+.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute {
+	color: $ui-felt;
 }
 
-.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata { 
+.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata {
 	color: darken($ui-petronas, 20%);
 }
 
-.css .hljs-hexcolor { 
-	color: #6cc; 
+.css .hljs-hexcolor {
+	color: #6cc;
 }
 
-.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title { 
-	color: #69c; 
+.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title {
+	color: #69c;
 }
 
-.hljs-keyword,.javascript .hljs-function { 
-	color: #c9c; 
+.hljs-keyword,.javascript .hljs-function {
+	color: #c9c;
 }
 
-.hljs { 
+.hljs {
 	display: block;
 	background: #fff;
 	color: $ui-elephant;
-	padding: 0.5em; 
+	padding: 0.5em;
 	font-size: $ui-gamma;
 	font-family: "Fira Mono", monospace!important;
 	overflow: scroll;
 	font-size: 12px;
 }
-	
+
 .coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata {
-	opacity:.5; 
+	opacity:.5;
 }
 
 .hljs-tag,
