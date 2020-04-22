@@ -3,14 +3,13 @@ import re
 
 from django.conf import settings
 from django.db import models
-from django.apps import apps
 from django import forms
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.defaultfilters import slugify
 from wagtail.core.models import Page
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, PageChooserPanel
-from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock
+from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock, PageChooserBlock
 from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -75,6 +74,34 @@ class ImageBlock(StructBlock):
     image = ImageChooserBlock()
     alignment = ImageAlignmentChoiceBlock()
     caption = RichTextBlock(required=False)
+
+
+class HighlightBlock(StructBlock):
+    """A block for a highlight module."""
+
+    class Meta:
+        """Meta data for the class."""
+
+        icon = 'pick'
+
+    title = CharBlock(icon="title")
+    description = CharBlock(icon="pilcrow")
+    page = PageChooserBlock(icon="link")
+    link_label = CharBlock(icon="link")
+
+
+def highlight_streamfield():
+    """Return a streamfield which only allows one highlight block."""
+    return StreamField(
+        StreamBlock(
+            [
+                ('highlight', HighlightBlock()),
+            ],
+            max_num=1,
+            required=False,
+        ),
+        blank=True,
+    )
 
 
 class IATIStreamBlock(StreamBlock):
@@ -249,6 +276,8 @@ class DefaultPageHeaderImageMixin(Page):
 class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage):  # pylint: disable=too-many-ancestors
     """Proof-of-concept model definition for the homepage."""
 
+    max_count = 1
+
     activities = models.PositiveIntegerField(default=1000000)
     organisations = models.PositiveIntegerField(default=700)
 
@@ -278,23 +307,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
     translation_fields = AbstractBasePage.translation_fields + local_translation_fields
     required_languages = {'en': list(set(local_translation_fields) - set(optional_local_translation_fields))}
 
-    def get_context(self, request, *args, **kwargs):
-        """Overwrite the default get_context page to serve descendant case study pages."""
-        case_study_page = apps.get_model(app_label='about', model_name='CaseStudyPage')
-        case_studies = case_study_page.objects.live().descendant_of(self).specific()
-        context = super(HomePage, self).get_context(request)
-        context['case_studies'] = case_studies
-        return context
-
-    def get_template(self, request, *args, **kwargs):
-        """Return template based on flag."""
-        template = 'home/home_page.html'
-        if self.use_legacy_template:
-            template = 'home/home_page_legacy.html'
-        return template
-
     multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
-        FieldPanel('use_legacy_template'),
         InlinePanel(
             'testimonial_items',
             heading='Testimonial items',
@@ -343,6 +356,12 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
 
 class StandardPage(AbstractContentPage):
     """A standard content page for generic use, i.e. a Privacy page."""
+
+    parent_page_types = [
+        'home.HomePage',
+        'home.StandardPage',
+    ]
+    subpage_types = ['home.StandardPage']
 
     FIXED_PAGE_TYPES = (
         ("privacy", "Privacy"),

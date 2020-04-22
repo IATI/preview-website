@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'tools',
     'dashboard',
     'navigation',
+    'get_involved',
     'governance',
     'taxonomies',
     'common',
@@ -86,6 +87,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'wagtail.contrib.settings',
+    'wagtail.contrib.modeladmin',
 
     'modeltranslation_sync',
     'django_extensions',
@@ -214,6 +216,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Wagtail settings
 WAGTAIL_SITE_NAME = "iati"
+WAGTAIL_FRONTEND_LOGIN_TEMPLATE = 'wagtailadmin/login.html'
 
 # Reference namespaces for URL redirection
 REFERENCE_NAMESPACES = [
@@ -264,7 +267,7 @@ DEFAULT_SHARE_IMAGE_URL = 'img/iati-share-social.png'
 # Search settings
 WAGTAILSEARCH_BACKENDS = {
     'default': {
-        'BACKEND': 'wagtail.search.backends.elasticsearch2',
+        'BACKEND': 'wagtail.search.backends.elasticsearch6',
         'URLS': [os.getenv('ELASTICSEARCH_URL', 'http://localhost:9200')],
         'INDEX': 'iati',
     },
