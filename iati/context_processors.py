@@ -9,6 +9,7 @@ from navigation.models import (
     UsefulLinks,
 )
 from iati_standard.models import IATIStandardPage
+from notices.models import GlobalNotice, PageNotice
 from search.models import SearchPage
 from guidance_and_support.models import SupportPage
 
@@ -46,6 +47,8 @@ def globals(request):
             'standard_page': standard_page,
             'search_page_url': search_page.url if search_page else '',
             'support_page_url': support_page.url if support_page else '',
+            'global_notice': GlobalNotice.get_notice(request),
+            'page_notice': PageNotice.get_notice(current_page, request),
         },
     }
 
