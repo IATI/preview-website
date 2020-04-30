@@ -8,7 +8,7 @@
     <div class="hero">
         {% include "home/includes/hero_heading.html" %}
     </div>
-
+    {% include "notices/page-notice.html" %}
     {% if self.static %}
         {% include "iati_standard/includes/iati_standard_page_static.html" %}
 
@@ -40,6 +40,14 @@
                     {% endfor %}
                 </div>
             </div>
+            <aside class="l-sidebar__aside">
+                <div class="aside-m">
+                    <div class="aside-m__header fill-sunset">
+                        <h3 class="aside-m__heading">{% trans "How to use the IATI Reference" %}</h3>
+                        <a class="button" href="/guidance/preparing-data/iati-reference/">{% trans "Visit our guidance" %}</a>
+                    </div>
+                </div>
+            </aside>
         </div>
     {% endif %}
 {% endblock %}
