@@ -34,15 +34,14 @@
 {# --------------------------------------- #}
 
 {% block hero %}
-    {% include 'heroes/hero-minor.html' %}
-    <div class="hero-notice hero-notice--alert">
-        <div class="row">
-            <div class="hero-notice__icon"></div>
-            <div class="hero-notice__copy">
-                <p>Last updated on 3rd March 2020. <a href="#">View changes</a>.</p>
-            </div>
+<div class="hero hero--minor">
+    <div class="row">
+        <div class="hero__caption">
+            <h1 class="hero__heading">{{ title }}</h1>
+            <h2 class="hero__subheading">Last updated on 3rd March 2020. <a href="#">View changes</a></h2>
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block aside %}
