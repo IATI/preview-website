@@ -9,8 +9,8 @@ from django.views.decorators.csrf import csrf_protect
 def on_update_request(request, *args, **kwargs):
     """Schedule update task given URL POST."""
     repo = request.POST.get('repo')
-    tag_to_update = request.POST.get('tag-to-update')
-    tag = request.POST.get(tag_to_update)
+    type_to_update = request.POST.get('type-to-update')
+    tag = request.POST.get('live_tag')
     error = None
 
     if not repo:
@@ -22,14 +22,14 @@ def on_update_request(request, *args, **kwargs):
         })
 
     if not tag:
-        error = 'Error: %s must be selected for data transfer' % tag_to_update
+        error = 'Error: tag must be selected for data transfer'
         return JsonResponse({
             'is_valid': False,
             'error': error,
             'message_class': 'warning',
         })
 
-    result = start_update_task.delay(repo, tag=tag)
+    result = start_update_task.delay(repo, tag=tag, type_to_update=type_to_update)
 
     return JsonResponse({
         'is_valid': True,
